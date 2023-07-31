@@ -1,0 +1,21 @@
+services:
+  nginx_web_server:
+    build: ./src/frontend
+    image: nginx_web_server_container
+    ports:
+      - "8080:80"
+    networks:
+      - my_network_2
+
+  mysql_server:
+    build: ./src/database
+    image: mysql_database_container
+    ports:
+      - "3007:3006"
+    networks: 
+      - my_network_2
+
+networks:
+  my_network_2:
+    # Expose containers to host network.
+    driver: bridge
